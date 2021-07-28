@@ -9,8 +9,21 @@
  margin-left: -275px;
  margin-top: -275px;
 
- -moz-box-shadow: 2px 2px 3px 3px black;
- -webkik-box-shadow:2px 2px 3px 3px black;
+ -moz-box-shadow: 2px 2px 3px 3px #454140;
+ -webkik-box-shadow:2px 2px 3px 3px #454140;
+ box-shadow: 2px 2px 3px 3px;
+}
+#subbody{
+ position:absolute;
+ width: 550px;
+ height: 550px;
+ left: 50%;
+ top: 50%;
+ margin-left: -275px;
+ margin-top: -275px;
+ background-color: white;
+ -moz-box-shadow: 2px 2px 3px 3px #454140;
+ -webkik-box-shadow:2px 2px 3px 3px #454140;
  box-shadow: 2px 2px 3px 3px;
 }
 button{
@@ -25,10 +38,10 @@ button{
  background-color: gray;
 }
 .buttons{
- background-color: blue;
+ background-color: #454140;
 }
 .buttons:HOVER {
- background-color: red;
+ background-color: #FFB60F;
 }
 #b11{
  top:25px;

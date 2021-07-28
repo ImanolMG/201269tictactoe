@@ -213,6 +213,7 @@ if((this.state.b1==this.state.b2 && this.state.b2==this.state.b3 )||(this.state.
        </div>
 
        <div id="body">
+        <div id="subbody">
         <button id="b11" className="buttons" name="b1" value={this.state.b1} onClick={this.asig.bind(this, 'b1')} >{this.state.c1}</button>
         <button id="b12" className="buttons" name="b2" value={this.state.b2} onClick={this.asig.bind(this, 'b2')} > {this.state.c2} </button>
         <button id="b13" className="buttons" name="b3" value={this.state.b3} onClick={this.asig.bind(this, 'b3')} >{this.state.c3}</button>
@@ -223,7 +224,7 @@ if((this.state.b1==this.state.b2 && this.state.b2==this.state.b3 )||(this.state.
         <button id="b32" className="buttons" name="b8" value={this.state.b8} onClick={this.asig.bind(this, 'b8')} >{this.state.c8}</button>
         <button id="b33" className="buttons" name="b9" value={this.state.b9} onClick={this.asig.bind(this, 'b9')}>{this.state.c9}</button>
        </div>
-
+       </div>
       </>
   )
  }
