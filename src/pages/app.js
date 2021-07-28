@@ -1,7 +1,7 @@
 import React from 'react'
 import TicTacToe from "./TicTacToe";
 
-import NotFound from "./NotFound";
+import NotFound from "../components/NotFound";
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 class App extends React.Component {
     render(){
