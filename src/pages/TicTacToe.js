@@ -4,7 +4,6 @@ import { io } from "socket.io-client"
 class TicTacToe extends React.Component {
 
  componentDidMount() {
-
   const socket = io("ws://localhost:3000");
   this.state.socket=socket;
   socket.on("connect", ()=>{
@@ -13,22 +12,16 @@ class TicTacToe extends React.Component {
 
  socket.on("valorJugador", (data)=>{
    this.state.textMio=data.xOo;
-  console.log(this.state.textMio)
-  })
-
-  socket.emit("message", "Servidor echo")
-  socket.on("Server:message", (data)=>{
-   console.log(data.name)
+  document.getElementById('jugador').innerHTML="Eres "+this.state.textMio;
+  console.log("Eres "+this.state.textMio)
   })
 
   socket.on("asigEspacio", (data)=>{
-   console.log(data.esp)
    this.verificarTurno(this.state.textRival);
    this.asignation(data.esp);
   })
 
   socket.on("asigValorEspacio", (data)=>{
-   console.log(data.vesp)
    this.state.textRival=data.vesp;
   })
 
@@ -58,7 +51,6 @@ class TicTacToe extends React.Component {
    c7: '',
    c8: '',
    c9: '',
-   con: 0,
    textMio: '',
    textRival:'',
   }
@@ -67,7 +59,6 @@ class TicTacToe extends React.Component {
  }
 
 verificarTurno(text){
-
    if(text==this.state.textMio){
     document.getElementById('b11').disabled=true;
     document.getElementById('b12').disabled=true;
@@ -78,6 +69,7 @@ verificarTurno(text){
     document.getElementById('b31').disabled=true;
     document.getElementById('b32').disabled=true;
     document.getElementById('b33').disabled=true;
+    document.getElementById('turno').innerHTML="Espera el turno del Rival";
    }
    else{
     document.getElementById('b11').disabled=false;
@@ -89,10 +81,9 @@ verificarTurno(text){
     document.getElementById('b31').disabled=false;
     document.getElementById('b32').disabled=false;
     document.getElementById('b33').disabled=false;
-
+    document.getElementById('turno').innerHTML="";
 
    }
- //  this.asignation(text, boton);
  }
 
  asig(boton,e){
@@ -178,13 +169,8 @@ verificarTurno(text){
 
 
 validation(text, e){
- console.log("validando");
- console.log(this.state.b1 +this.state.b2 + this.state.b3 + this.state.b4 + this.state.b5 + this.state.b6 + this.state.b7 + this.state.b8+ this.state.b9 );
 if((this.state.b1==this.state.b2 && this.state.b2==this.state.b3 )||(this.state.b1==this.state.b5 && this.state.b5==this.state.b9)||(this.state.b3==this.state.b5 && this.state.b5==this.state.b7 )||(this.state.b4==this.state.b5 && this.state.b5==this.state.b6)||(this.state.b7==this.state.b8 && this.state.b8==this.state.b9 )||(this.state.b1==this.state.b4 && this.state.b4==this.state.b7 ) ||(this.state.b2==this.state.b5 && this.state.b5==this.state.b8)||(this.state.b3==this.state.b6 && this.state.b6==this.state.b9)){
-  /* var con=confirm(text+" Es el Ganador!!!\nQuieres jugar otra ves?");
-   if(con==true){
-    window.location.reload();
-   }*/
+
  if(text==this.state.textMio){
   alert("Ganaste");
  }
@@ -192,7 +178,6 @@ if((this.state.b1==this.state.b2 && this.state.b2==this.state.b3 )||(this.state.
   alert("Perdiste");
  }
 
- //alert("Gano  "+text)
  this.setState({
   b1: 'b1',
   b2: 'b2',
@@ -212,9 +197,9 @@ if((this.state.b1==this.state.b2 && this.state.b2==this.state.b3 )||(this.state.
   c7: '',
   c8: '',
   c9: ''
-
  })
-
+ text="";
+ this.verificarTurno(text)
   }
  }
 
@@ -222,6 +207,11 @@ if((this.state.b1==this.state.b2 && this.state.b2==this.state.b3 )||(this.state.
  render() {
   return (
       <>
+       <div id="detallesJuego">
+        <h1 id="jugador"></h1>
+        <h2 id="turno"></h2>
+       </div>
+
        <div id="body">
         <button id="b11" className="buttons" name="b1" value={this.state.b1} onClick={this.asig.bind(this, 'b1')} >{this.state.c1}</button>
         <button id="b12" className="buttons" name="b2" value={this.state.b2} onClick={this.asig.bind(this, 'b2')} > {this.state.c2} </button>
